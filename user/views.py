@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserForm , Profile
+from .forms import CustomUserForm
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 
@@ -16,7 +17,8 @@ def signup(request):
         form = CustomUserForm(request.POST)
         if form.is_valid():
             user=form.save()
-           
+            p=Profile(user=user, name=user.name)
+            p.save()
             login(request, user)
             return redirect('success')
         else:

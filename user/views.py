@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse,get_object_or_404
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserForm
+from .forms import CustomUserForm,ProfileForm
 from django.contrib.auth.models import User
 from .models import Profile
 
@@ -17,7 +17,7 @@ def signup(request):
         form = CustomUserForm(request.POST)
         if form.is_valid():
             user=form.save()
-            p=Profile(user=user, name=user.name)
+            p=Profile(user=user, name=user.username)
             p.save()
             login(request, user)
             return redirect('success')
@@ -51,6 +51,12 @@ def profile(request):
     return render(request, 'user/profile.html')
 
 
-def updateprofile(request):
-    form = Profile()
-    return render(request, 'user/profile.html',{'form':form})
+def updateprofile(request,id):
+    
+    obj = get_object_or_404(Profile, id = id)
+    form = ProfileForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        return render(request, 'user/profile.html')
+
+    return render(request, 'user/updateprofile.html',{'form':form})

@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+    color: whitesmoke;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+}
+nav
+{   
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    width: 100vw;
+    background-color:#006D77;
+    justify-content: space-between;
+}
+
+
+nav .empty img{
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.box_url{
+    width: 30vw;
+}
+
+nav .box_url ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+nav .box_url ul li{
+    list-style: none;
+    align-self: center;
+}
+
+section .box1{
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDF6F9;
+}
+
+section .box2{
+    margin-top: -10%; 
+    height: 68%;
+    background-color: #83C5BE;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+section .box2 .image 
+{
+    height: 50%;
+}
+section .box2 .image img{
+    margin-top: 10px;
+    border-radius: 50%;
+    height: 150px;
+    border: 0.5px solid black;
+}
+
+section .box2 .details{
+    margin-top: -20px;
+    height: 50%;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+}
+
+section .box2 .details ul li{
+    color: #FFF;
+    list-style: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    padding: 2%;
+}
+
+section .box2 .details ul{
+    height:60%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section .box2 .details ul li button{
+    height: 40px;
+    width: 80px;
+    border: none;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Button{
+    height: 40px;
+    width: 80px;
+    border: none;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: gray;
+    margin-bottom: 15px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 19px;
+}
+
+form{
+   
+    height: max-content;
+    margin: 0 auto;
+}
+
+#hint_id_password2{
+    display: none;
+}
+
+.button-div
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

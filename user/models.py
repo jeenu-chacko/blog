@@ -12,6 +12,7 @@ class Profile(models.Model):
     name = models.CharField(blank=True,max_length=50, null=True)
     age =   models.IntegerField(blank=True, null=True)
     gender = models.CharField(blank=True,max_length=1, choices=Gender_options, null=True)
+    linkedin_Url= models.CharField(blank=True,max_length=100, null=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics', null=True)
 
     def __str__(self):

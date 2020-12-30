@@ -2,15 +2,15 @@ from django.shortcuts import render, redirect, HttpResponse,get_object_or_404
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserForm,ProfileForm
+from .forms import CustomUserForm,ProfileForm,PostForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,Post
 
 
 
 @login_required
-def success(request):
-    return render(request,'user/dashboard.html')
+def post_create(request):
+    return render(request,'user/post_create.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -34,7 +34,7 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request,username=username, password=password)
-
+        
         if user is not None:
             login(request, user)
             return redirect('success')
@@ -60,3 +60,23 @@ def updateprofile(request,id):
         return render(request, 'user/profile.html')
 
     return render(request, 'user/updateprofile.html',{'form':form})
+
+
+
+def create_post(request):
+    form = PostForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return render(request, 'user/home.html')
+    return render(request, 'user/create_post.html',{'form':form})
+
+
+
+def home(request):
+    context = {
+        'posts': Post.objects.all()
+    }
+    
+    return render(request, 'user/home.html',context)
